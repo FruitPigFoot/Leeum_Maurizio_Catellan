@@ -118,7 +118,7 @@
         canvasCaption: document.querySelector(".canvas-caption"),
         canvas: document.querySelector(".image-blend-canvas"),
         context: document.querySelector(".image-blend-canvas").getContext("2d"),
-        imagesPath: ["../images/Pope.jpg", "../images/Grave.jpg"],
+        imagesPath: ["./images/Pope.jpg", "./images/Grave.jpg"],
         images: [],
       },
       values: {
@@ -146,7 +146,7 @@
     let numberOfLoadedImages = 0;
     for (let i = 0; i < sceneInfo[0].values.videoImageCount; i++) {
       let imgElem = new Image();
-      imgElem.src = `../video/SistineChapel/pic${1 + i}.jpg`;
+      imgElem.src = `./video/SistineChapel/pic${1 + i}.jpg`;
       imgElem.addEventListener("load", () => {
         scene0Images.push(imgElem);
         numberOfLoadedImages++;
@@ -176,7 +176,7 @@
     let numberOfLoadedImages = 0;
     for (let i = 0; i < sceneInfo[2].values.videoImageCount; i++) {
       let imgElem = new Image();
-      imgElem.src = `../video/Charlie/pic${1 + i}.jpg`;
+      imgElem.src = `./video/Charlie/pic${1 + i}.jpg`;
       imgElem.addEventListener("load", () => {
         scene2Images.push(imgElem);
         numberOfLoadedImages++;
