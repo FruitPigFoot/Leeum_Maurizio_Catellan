@@ -199,13 +199,13 @@
     }
   }
 
-  function getImageNumber(str) {
-    const newStr = str.substring(
-      str.lastIndexOf("_") + 1,
-      str.lastIndexOf(".")
-    );
-    return newStr * 1;
-  }
+  // function getImageNumber(str) {
+  //   const newStr = str.substring(
+  //     str.lastIndexOf("_") + 1,
+  //     str.lastIndexOf(".")
+  //   );
+  //   return newStr * 1;
+  // }
 
   // 이미지가 로드되는 순서는 이미지 번호 순으로 보장이 안되기 때문에 정렬 함수로 번호순 정렬이 필요
   function sortImages(imageArray) {
@@ -215,8 +215,8 @@
     for (let i = 0; i < imageArray.length; i++) {
       for (let j = 0; j < imageArray.length - i; j++) {
         if (j < imageArray.length - 1) {
-          imageNumber1 = getImageNumber(imageArray[j].currentSrc);
-          imageNumber2 = getImageNumber(imageArray[j + 1].currentSrc);
+          // imageNumber1 = getImageNumber(imageArray[j].currentSrc);
+          // imageNumber2 = getImageNumber(imageArray[j + 1].currentSrc);
           if (imageNumber1 > imageNumber2) {
             temp = imageArray[j];
             imageArray[j] = imageArray[j + 1];
