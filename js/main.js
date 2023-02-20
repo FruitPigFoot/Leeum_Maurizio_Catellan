@@ -16,7 +16,7 @@
       scrollHeight: 0,
       objs: {
         container: document.querySelector("#scroll-section-0"),
-        messageA: document.querySelector("#scroll-section-0 .main-message.a"),
+        // messageA: document.querySelector("#scroll-section-0 .main-message.a"),
         messageB: document.querySelector("#scroll-section-0 .main-message.b"),
         messageC: document.querySelector("#scroll-section-0 .main-message.c"),
         messageD: document.querySelector("#scroll-section-0 .main-message.d"),
@@ -25,22 +25,24 @@
         videoImages: [],
       },
       values: {
+        // videoImageCount: 158,
         videoImageCount: 316,
+        // imageSequence: [0, 157],
         imageSequence: [0, 315],
         canvas_opacity: [1, 0, { start: 0.9, end: 1 }],
-        messageA_opacity_in: [0, 1, { start: 0.1, end: 0.2 }],
+        // messageA_opacity_in: [0, 1, { start: 0.1, end: 0.2 }],
         messageB_opacity_in: [0, 1, { start: 0.3, end: 0.4 }],
         messageC_opacity_in: [0, 1, { start: 0.5, end: 0.6 }],
         messageD_opacity_in: [0, 1, { start: 0.7, end: 0.8 }],
-        messageA_translateY_in: [20, 0, { start: 0.1, end: 0.2 }],
+        // messageA_translateY_in: [20, 0, { start: 0.1, end: 0.2 }],
         messageB_translateY_in: [20, 0, { start: 0.3, end: 0.4 }],
         messageC_translateY_in: [20, 0, { start: 0.5, end: 0.6 }],
         messageD_translateY_in: [20, 0, { start: 0.7, end: 0.8 }],
-        messageA_opacity_out: [1, 0, { start: 0.25, end: 0.3 }],
+        // messageA_opacity_out: [1, 0, { start: 0.25, end: 0.3 }],
         messageB_opacity_out: [1, 0, { start: 0.45, end: 0.5 }],
         messageC_opacity_out: [1, 0, { start: 0.65, end: 0.7 }],
         messageD_opacity_out: [1, 0, { start: 0.85, end: 0.9 }],
-        messageA_translateY_out: [0, -20, { start: 0.25, end: 0.3 }],
+        // messageA_translateY_out: [0, -20, { start: 0.25, end: 0.3 }],
         messageB_translateY_out: [0, -20, { start: 0.45, end: 0.5 }],
         messageC_translateY_out: [0, -20, { start: 0.65, end: 0.7 }],
         messageD_translateY_out: [0, -20, { start: 0.85, end: 0.9 }],
@@ -118,7 +120,7 @@
         canvasCaption: document.querySelector(".canvas-caption"),
         canvas: document.querySelector(".image-blend-canvas"),
         context: document.querySelector(".image-blend-canvas").getContext("2d"),
-        imagesPath: ["./images/Pope.jpg", "./images/Grave.jpg"],
+        imagesPath: ["./images/Pope.webp", "./images/Grave.webp"],
         images: [],
       },
       values: {
@@ -146,7 +148,8 @@
     let numberOfLoadedImages = 0;
     for (let i = 0; i < sceneInfo[0].values.videoImageCount; i++) {
       let imgElem = new Image();
-      imgElem.src = `./video/SistineChapel/pic${1 + i}.jpg`;
+      // imgElem.src = `./video/SistineChapelOdd/p${1 + i}.jpg`;
+      imgElem.src = `./video/SistineChapel/pic${i + 1}.jpg`;
       imgElem.addEventListener("load", () => {
         scene0Images.push(imgElem);
         numberOfLoadedImages++;
@@ -176,7 +179,7 @@
     let numberOfLoadedImages = 0;
     for (let i = 0; i < sceneInfo[2].values.videoImageCount; i++) {
       let imgElem = new Image();
-      imgElem.src = `./video/Charlie/pic${1 + i}.jpg`;
+      imgElem.src = `./video/CharlieLower/pic${1 + i}.jpg`;
       imgElem.addEventListener("load", () => {
         scene2Images.push(imgElem);
         numberOfLoadedImages++;
@@ -199,13 +202,14 @@
     }
   }
 
-  // function getImageNumber(str) {
-  //   const newStr = str.substring(
-  //     str.lastIndexOf("_") + 1,
-  //     str.lastIndexOf(".")
-  //   );
-  //   return newStr * 1;
-  // }
+  function getImageNumber(str) {
+    const newStr = str.substring(
+      str.lastIndexOf("c") + 1,
+      str.lastIndexOf(".")
+    );
+    // console.log(newStr);
+    return newStr * 1;
+  }
 
   // 이미지가 로드되는 순서는 이미지 번호 순으로 보장이 안되기 때문에 정렬 함수로 번호순 정렬이 필요
   function sortImages(imageArray) {
@@ -215,8 +219,8 @@
     for (let i = 0; i < imageArray.length; i++) {
       for (let j = 0; j < imageArray.length - i; j++) {
         if (j < imageArray.length - 1) {
-          // imageNumber1 = getImageNumber(imageArray[j].currentSrc);
-          // imageNumber2 = getImageNumber(imageArray[j + 1].currentSrc);
+          imageNumber1 = getImageNumber(imageArray[j].currentSrc);
+          imageNumber2 = getImageNumber(imageArray[j + 1].currentSrc);
           if (imageNumber1 > imageNumber2) {
             temp = imageArray[j];
             imageArray[j] = imageArray[j + 1];
@@ -226,6 +230,77 @@
       }
     }
   }
+
+  // function sortImages(imageArray) {
+  //   // if (imageArray.length <= 1) return imageArray;
+
+  //   const pivot = imageArray[0];
+  //   const left = [];
+  //   const right = [];
+
+  //   for (let i = 1; i < imageArray.length; i++) {
+  //     if (imageArray[i] <= pivot) left.push(imageArray[i]);
+  //     else right.push(imageArray[i]);
+  //   }
+
+  //   const lSorted = sortImages(left);
+  //   const rSorted = sortImages(right);
+  //   return [...lSorted, pivot, ...rSorted];
+  // }
+
+  // function sortImages(arr) {
+  //   for (let i = 1; i < arr.length; i++) {
+  //     // 임시변수에 arr[i]값을 복사해서 담아 사용한다.
+  //     let tmp = arr[i],
+  //       j;
+  //     // 스코프 범위 떄문에 j를 외부 포문에서 변수를생성해준다.
+  //     for (j = i - 1; j >= 0; j--) {
+  //       // 앞의 요소가 뒤의 요소보다 클 경우?
+  //       if (arr[j] > tmp) {
+  //         // 뒤 요소에 앞의 요소를 담아준다.
+  //         arr[j + 1] = arr[j]; // 한칸씩 뒤로 밀어주는 작업 삽입할 자리 만들기
+  //       }
+  //       // 앞의 요소가 뒤의 요소보다 작을 경우?
+  //       else break;
+  //     }
+  //     // 반복문 종료 후 요소 삽입하기
+  //     arr[j + 1] = tmp;
+  //   }
+
+  //   return arr;
+  // }
+
+  // function sortImages(imageArray, left = 0, right = imageArray.length - 1) {
+  //   if (left >= right) {
+  //     return;
+  //   }
+  //   const mid = Math.floor((left + right) / 2);
+  //   const pivot = imageArray[mid];
+  //   const partition = divide(imageArray, left, right, pivot);
+  //   sortImages(imageArray, left, partition - 1);
+  //   sortImages(imageArray, partition, right);
+
+  //   function divide(array, left, right, pivot) {
+  //     while (left <= right) {
+  //       while (imageArray[left] < pivot) {
+  //         left++;
+  //       }
+  //       while (imageArray[right] > pivot) {
+  //         right--;
+  //       }
+
+  //       if (left <= right) {
+  //         let temp = imageArray[left];
+  //         imageArray[left] = imageArray[right];
+  //         imageArray[right] = temp;
+  //         left++;
+  //         right--;
+  //       }
+  //     }
+  //     return left;
+  //   }
+  //   return imageArray;
+  // }
 
   function setImagesOfScene0() {
     // Scene 0에 쓰이는 scene0Images 이미지 배열을 번호순 정렬 후
@@ -333,27 +408,27 @@
           currentYOffset
         );
 
-        if (scrollRatio <= 0.22) {
-          // in
-          objs.messageA.style.opacity = calcValues(
-            values.messageA_opacity_in,
-            currentYOffset
-          );
-          objs.messageA.style.transform = `translate3d(0, ${calcValues(
-            values.messageA_translateY_in,
-            currentYOffset
-          )}%, 0)`;
-        } else {
-          // out
-          objs.messageA.style.opacity = calcValues(
-            values.messageA_opacity_out,
-            currentYOffset
-          );
-          objs.messageA.style.transform = `translate3d(0, ${calcValues(
-            values.messageA_translateY_out,
-            currentYOffset
-          )}%, 0)`;
-        }
+        // if (scrollRatio <= 0.22) {
+        //   // in
+        //   objs.messageA.style.opacity = calcValues(
+        //     values.messageA_opacity_in,
+        //     currentYOffset
+        //   );
+        //   objs.messageA.style.transform = `translate3d(0, ${calcValues(
+        //     values.messageA_translateY_in,
+        //     currentYOffset
+        //   )}%, 0)`;
+        // } else {
+        //   // out
+        //   objs.messageA.style.opacity = calcValues(
+        //     values.messageA_opacity_out,
+        //     currentYOffset
+        //   );
+        //   objs.messageA.style.transform = `translate3d(0, ${calcValues(
+        //     values.messageA_translateY_out,
+        //     currentYOffset
+        //   )}%, 0)`;
+        // }
 
         if (scrollRatio <= 0.42) {
           // in
@@ -466,7 +541,7 @@
 
         if (scrollRatio <= 0.43) {
           // in
-          objs.messageB.style.transform = `translate3d(400px, ${calcValues(
+          objs.messageB.style.transform = `translate3d(0, ${calcValues(
             values.messageB_translateY_in,
             currentYOffset
           )}%, 0)`;
@@ -480,7 +555,7 @@
           )})`;
         } else {
           // out
-          objs.messageB.style.transform = `translate3d(400px, ${calcValues(
+          objs.messageB.style.transform = `translate3d(0, ${calcValues(
             values.messageB_translateY_out,
             currentYOffset
           )}%, 0)`;
